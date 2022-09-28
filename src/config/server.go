@@ -18,10 +18,10 @@ var ServeCmd = &cobra.Command{
 
 func server(cmd *cobra.Command, args []string) error {
 	if mainRoute, err := routers.New(); err == nil {
-		address := "127.0.0.1:8080"
+		address := "0.0.0.0:8080"
 
 		if port := os.Getenv("PORT"); port != "" {
-			address = "127.0.0.1:" + port
+			address = "0.0.0.0:" + port
 		}
 
 		srv := &http.Server{
