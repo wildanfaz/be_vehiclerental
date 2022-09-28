@@ -1,1 +1,1 @@
-web: ./bin/vehicle_rental help
+web: ./bin/vehicle_rental --help
