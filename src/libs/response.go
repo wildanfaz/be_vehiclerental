@@ -9,7 +9,7 @@ type Resp struct {
 	Status      int         `json:"status"`
 	Description string      `json:"description"`
 	Message     string      `json:"message"`
-	IsError     interface{} `json:"error,omitempty"`
+	Error       interface{} `json:"error,omitempty"`
 	Data        interface{} `json:"data,omitempty"`
 }
 
@@ -27,13 +27,13 @@ func (res *Resp) Send(w http.ResponseWriter) {
 	}
 }
 
-func Response(data interface{}, status int, message string, isError error) *Resp {
-	if isError != nil {
+func Response(data interface{}, status int, message string, err error) *Resp {
+	if err != nil {
 		return &Resp{
 			Status:      status,
 			Description: statusDescription(status),
 			Message:     message,
-			IsError:     isError.Error(),
+			Error:       err.Error(),
 			Data:        data,
 		}
 	}
@@ -42,7 +42,7 @@ func Response(data interface{}, status int, message string, isError error) *Resp
 		Status:      status,
 		Description: statusDescription(status),
 		Message:     message,
-		IsError:     isError,
+		Error:       err,
 		Data:        data,
 	}
 }

@@ -23,7 +23,7 @@ func NewCtrl(svc interfaces.VehiclesService) *vehicles_ctrl {
 func (ctrl *vehicles_ctrl) GetAllVehicles(w http.ResponseWriter, r *http.Request) {
 	data := ctrl.svc.GetAllVehicles()
 
-	if data.IsError != nil {
+	if data.Error != nil {
 		data.Send(w)
 		return
 	}
@@ -48,7 +48,7 @@ func (ctrl *vehicles_ctrl) AddVehicle(w http.ResponseWriter, r *http.Request) {
 
 	data := ctrl.svc.AddVehicle(&datas)
 
-	if data.IsError != nil {
+	if data.Error != nil {
 		data.Send(w)
 		return
 	}
@@ -67,7 +67,7 @@ func (ctrl *vehicles_ctrl) UpdateVehicle(w http.ResponseWriter, r *http.Request)
 	vars := mux.Vars(r)
 	data := ctrl.svc.UpdateVehicle(vars["vehicle_id"], &datas)
 
-	if data.IsError != nil {
+	if data.Error != nil {
 		data.Send(w)
 		return
 	}
@@ -81,7 +81,7 @@ func (ctrl *vehicles_ctrl) DeleteVehicle(w http.ResponseWriter, r *http.Request)
 	vars := mux.Vars(r)
 	data := ctrl.svc.DeleteVehicle(vars["vehicle_id"], &datas)
 
-	if data.IsError != nil {
+	if data.Error != nil {
 		data.Send(w)
 		return
 	}
@@ -93,7 +93,7 @@ func (ctrl *vehicles_ctrl) SearchVehicle(w http.ResponseWriter, r *http.Request)
 	search := r.URL.Query().Get("vehicle_name")
 	data := ctrl.svc.SearchVehicle(search)
 
-	if data.IsError != nil {
+	if data.Error != nil {
 		data.Send(w)
 		return
 	}
@@ -104,7 +104,7 @@ func (ctrl *vehicles_ctrl) SearchVehicle(w http.ResponseWriter, r *http.Request)
 func (ctrl *vehicles_ctrl) PopularVehicles(w http.ResponseWriter, r *http.Request) {
 	data := ctrl.svc.PopularVehicles()
 
-	if data.IsError != nil {
+	if data.Error != nil {
 		data.Send(w)
 		return
 	}
