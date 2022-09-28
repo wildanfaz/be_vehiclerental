@@ -1,1 +1,1 @@
-web: ./bin/vehicle_rental serve
+web: go run main.go serve
