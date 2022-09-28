@@ -21,7 +21,7 @@ func NewCtrl(svc interfaces.HistoriesService) *histories_ctrl {
 func (ctrl *histories_ctrl) GetAllHistories(w http.ResponseWriter, r *http.Request) {
 	data := ctrl.svc.GetAllHistories()
 
-	if data.IsError != nil {
+	if data.Error != nil {
 		data.Send(w)
 		return
 	}
@@ -40,7 +40,7 @@ func (ctrl *histories_ctrl) AddHistory(w http.ResponseWriter, r *http.Request) {
 
 	data := ctrl.svc.AddHistory(&datas)
 
-	if data.IsError != nil {
+	if data.Error != nil {
 		data.Send(w)
 		return
 	}
@@ -59,7 +59,7 @@ func (ctrl *histories_ctrl) UpdateHistory(w http.ResponseWriter, r *http.Request
 	vars := mux.Vars(r)
 	data := ctrl.svc.UpdateHistory(vars["history_id"], &datas)
 
-	if data.IsError != nil {
+	if data.Error != nil {
 		data.Send(w)
 		return
 	}
@@ -73,7 +73,7 @@ func (ctrl *histories_ctrl) DeleteHistory(w http.ResponseWriter, r *http.Request
 	vars := mux.Vars(r)
 	data := ctrl.svc.DeleteHistory(vars["history_id"], &datas)
 
-	if data.IsError != nil {
+	if data.Error != nil {
 		data.Send(w)
 		return
 	}
@@ -85,7 +85,7 @@ func (ctrl *histories_ctrl) SearchHistory(w http.ResponseWriter, r *http.Request
 	search := r.URL.Query().Get("vehicle_id")
 	data := ctrl.svc.SearchHistory(search)
 
-	if data.IsError != nil {
+	if data.Error != nil {
 		data.Send(w)
 		return
 	}

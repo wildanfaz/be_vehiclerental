@@ -25,7 +25,7 @@ func (ctrl *users_ctrl) GetAllUsers(w http.ResponseWriter, r *http.Request) {
 
 	data := ctrl.svc.GetAllUsers()
 
-	if data.IsError != nil {
+	if data.Error != nil {
 		data.Send(w)
 		return
 	}
@@ -39,7 +39,7 @@ func (ctrl *users_ctrl) GetUser(w http.ResponseWriter, r *http.Request) {
 
 	data := ctrl.svc.GetUserByName(claims_users.(string))
 
-	if data.IsError != nil {
+	if data.Error != nil {
 		data.Send(w)
 		return
 	}
@@ -57,7 +57,7 @@ func (ctrl *users_ctrl) AddUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data := ctrl.svc.AddUser(&datas)
-	if data.IsError != nil {
+	if data.Error != nil {
 		data.Send(w)
 		return
 	}
@@ -78,7 +78,7 @@ func (ctrl *users_ctrl) UpdateUser(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	data := ctrl.svc.UpdateUser(vars["name"], &datas)
 
-	if data.IsError != nil {
+	if data.Error != nil {
 		data.Send(w)
 		return
 	}
@@ -93,7 +93,7 @@ func (ctrl *users_ctrl) DeleteUser(w http.ResponseWriter, r *http.Request) {
 
 	data := ctrl.svc.DeleteUser(vars["name"], &datas)
 
-	if data.IsError != nil {
+	if data.Error != nil {
 		data.Send(w)
 		return
 	}
@@ -106,7 +106,7 @@ func (ctrl *users_ctrl) GetUserByName(w http.ResponseWriter, r *http.Request) {
 
 	data := ctrl.svc.GetUserByName(vars["name"])
 
-	if data.IsError != nil {
+	if data.Error != nil {
 		data.Send(w)
 		return
 	}
