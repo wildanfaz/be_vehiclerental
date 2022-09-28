@@ -32,7 +32,7 @@ func server(cmd *cobra.Command, args []string) error {
 			Handler:      mainRoute,
 		}
 
-		fmt.Println("running on port", address)
+		fmt.Print("running on port https://", address)
 		srv.ListenAndServe()
 		return nil
 	} else {
