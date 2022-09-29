@@ -23,6 +23,7 @@ go mod tidy
 - Upload Image
 - Cobra Command
 - DB Migration
+- Postman
 - Unit Test
 - Heroku
 
