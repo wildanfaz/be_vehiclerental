@@ -23,8 +23,6 @@ go mod tidy
 - Upload Image
 - Cobra Command
 - DB Migration
-
-//next to vehicle_rental repository
 - Unit Test
 - Heroku
 
