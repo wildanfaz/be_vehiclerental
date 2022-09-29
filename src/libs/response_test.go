@@ -1,11 +1,14 @@
 package libs
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func TestResponse(t *testing.T) {
 	result := Response(nil, 200, "success", nil)
 
-	if result.Error != nil {
-		t.Fatal("error :", result.Error)
-	}
+	// result.Error = errors.New("err")
+	assert.Nil(t, result.Error, result.Error)
 }

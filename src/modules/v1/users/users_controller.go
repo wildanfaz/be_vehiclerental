@@ -20,9 +20,6 @@ func NewCtrl(svc interfaces.UsersService) *users_ctrl {
 }
 
 func (ctrl *users_ctrl) GetAllUsers(w http.ResponseWriter, r *http.Request) {
-	claims_users := r.Context().Value("name")
-	fmt.Println(claims_users.(string))
-
 	data := ctrl.svc.GetAllUsers()
 
 	if data.Error != nil {

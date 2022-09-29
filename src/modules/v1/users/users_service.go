@@ -33,13 +33,13 @@ func (svc *users_service) AddUser(body *models.User) *libs.Resp {
 
 	body.Password = hashpassword
 
-	_, err := svc.repo.SaveUser(body)
+	result, err := svc.repo.SaveUser(body)
 
 	if err != nil {
 		return libs.Response(nil, 400, "failed add data", err)
 	}
 
-	return libs.Response(nil, 201, "success add data", nil)
+	return libs.Response(result.Name, 201, "success add data", nil)
 }
 
 func (svc *users_service) UpdateUser(vars string, body *models.User) *libs.Resp {

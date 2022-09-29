@@ -13,6 +13,7 @@ func TestHashingPassword(t *testing.T) {
 	if err != nil {
 		t.Fatal("msg :", err)
 	}
+	//**assert.Nil(t, err, err)
 
 	//**check
 	// result = myPassword
