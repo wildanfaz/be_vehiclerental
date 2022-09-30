@@ -2,6 +2,8 @@ package libs
 
 import (
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestHashingPassword(t *testing.T) {
@@ -20,4 +22,6 @@ func TestHashingPassword(t *testing.T) {
 	if result == myPassword {
 		t.Fatal("password has not been hashed")
 	}
+
+	assert.IsType(t, "string", result, "result is not string")
 }

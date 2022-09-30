@@ -11,4 +11,5 @@ func TestResponse(t *testing.T) {
 
 	// result.Error = errors.New("err")
 	assert.Nil(t, result.Error, result.Error)
+	assert.Equal(t, 200, result.Status, "status is not 200")
 }
