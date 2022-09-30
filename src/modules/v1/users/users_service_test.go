@@ -26,7 +26,7 @@ func TestGetAllUsers(t *testing.T) {
 	result := data.Data.(*models.Users)
 
 	for i, v := range *result {
-		assert.Equal(t, dataMock[i].Name, v.Name, "name is not match")
+		assert.Equal(t, dataMock[i].Name, v.Name, "name is different")
 	}
 }
 
@@ -39,12 +39,13 @@ func TestGetUserByName(t *testing.T) {
 		Email: "user@gmail.com",
 	}
 
-	repo.mock.On("FindUserByName").Return(&dataMock, nil)
+	repo.mock.On("FindUserByName", "user").Return(&dataMock, nil)
 
 	data := service.GetUserByName("user")
 
 	fmt.Println(data)
-	// result := data.Data.(*models.Users)
+	result := data.Data.(*models.User)
+	assert.Equal(t, "user", result.Name, "name is different")
 }
 
 func TestAddUser(t *testing.T) {

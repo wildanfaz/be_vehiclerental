@@ -17,22 +17,22 @@ var repos = RepoMock{mock.Mock{}}
 var service = NewService(&repos)
 var ctrl = NewCtrl(service)
 
-var dataMock = models.Users{
-	{Name: "user", Email: "user@gmail.com"},
-	{Name: "admin", Email: "admin@gmail.com"},
+var dataMock = models.User{
+	Name:  "user",
+	Email: "user@gmail.com",
 }
 
-func TestCtrlGetAllUsers(t *testing.T) {
+func TestCtrlGetUserByName(t *testing.T) {
 	w := httptest.NewRecorder()
 	mux := mux.NewRouter()
 
-	repos.mock.On("FindAllUsers").Return(&dataMock, nil)
+	repos.mock.On("FindUserByName", "user").Return(&dataMock, nil)
 
-	mux.HandleFunc("/test/users", ctrl.GetAllUsers)
+	mux.HandleFunc("/test/users", ctrl.GetUserByName)
 
 	mux.ServeHTTP(w, httptest.NewRequest("GET", "/test/users", nil))
 
-	var prods models.Users
+	var prods models.User
 	response := libs.Resp{
 		Data: &prods,
 	}

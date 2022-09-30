@@ -16,7 +16,10 @@ func (m *RepoMock) FindAllUsers() (*models.Users, error) {
 
 // **test 1
 func (m *RepoMock) FindUserByName(name string) (*models.User, error) {
-	args := m.mock.Called()
+	if name == "" {
+		name = "user"
+	}
+	args := m.mock.Called(name)
 	return args.Get(0).(*models.User), nil
 }
 
