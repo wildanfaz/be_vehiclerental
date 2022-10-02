@@ -25,3 +25,9 @@ func TestHashingPassword(t *testing.T) {
 
 	assert.IsType(t, "string", result, "result is not string")
 }
+
+func TestCheckPassword(t *testing.T) {
+	err := CheckPassword("aiueo", "mypassword")
+
+	assert.NotNil(t, err, "success hash password")
+}
