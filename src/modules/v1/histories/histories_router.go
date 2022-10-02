@@ -2,7 +2,7 @@ package histories
 
 import (
 	"github.com/gorilla/mux"
-	"github.com/wildanfaz/vehicle_rental/src/modules/v1/middleware"
+	"github.com/wildanfaz/vehicle_rental/src/middleware"
 	"gorm.io/gorm"
 )
 

@@ -11,3 +11,12 @@ func TestToken(t *testing.T) {
 
 	assert.IsType(t, &claims{}, result)
 }
+
+func TestCreateToken(t *testing.T) {
+	result := NewToken("user", "user")
+
+	token, err := result.Create()
+
+	assert.Nil(t, err, "error is not nil")
+	assert.IsType(t, "string", token)
+}
