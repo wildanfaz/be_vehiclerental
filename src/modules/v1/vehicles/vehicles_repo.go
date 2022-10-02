@@ -38,14 +38,14 @@ func (re *vehicles_repo) SaveVehicle(body *models.Vehicle) (*models.Vehicle, err
 }
 
 func (re *vehicles_repo) ChangeVehicle(vars string, body *models.Vehicle) (*models.Vehicle, error) {
-	var check int64
+	// var check int64
 
-	re.db.Model(&body).Where("vehicle_id = ?", vars).Count(&check)
-	checkName := check > 0
+	// re.db.Model(&body).Where("vehicle_id = ?", vars).Count(&check)
+	// checkName := check > 0
 
-	if checkName == false {
-		return nil, errors.New("vehicle is not exists")
-	}
+	// if checkName == false {
+	// 	return nil, errors.New("vehicle is not exists")
+	// }
 
 	result := re.db.Model(&body).Where("vehicle_id = ?", vars).Updates(body)
 
@@ -57,14 +57,14 @@ func (re *vehicles_repo) ChangeVehicle(vars string, body *models.Vehicle) (*mode
 }
 
 func (re *vehicles_repo) RemoveVehicle(vars string, body *models.Vehicle) (*models.Vehicle, error) {
-	var check int64
+	// var check int64
 
-	re.db.Model(&body).Where("vehicle_id = ?", vars).Count(&check)
-	checkName := check > 0
+	// re.db.Model(&body).Where("vehicle_id = ?", vars).Count(&check)
+	// checkName := check > 0
 
-	if checkName == false {
-		return nil, errors.New("vehicle is not exists")
-	}
+	// if checkName == false {
+	// 	return nil, errors.New("vehicle is not exists")
+	// }
 
 	result := re.db.Delete(body, vars)
 
@@ -98,4 +98,17 @@ func (re *vehicles_repo) RatingVehicles() (*models.Vehicles, error) {
 	}
 
 	return &data, nil
+}
+
+func (re *vehicles_repo) CheckId(vars string, body *models.Vehicle) error {
+	var check int64
+
+	re.db.Model(&body).Where("vehicle_id = ?", vars).Count(&check)
+	checkName := check > 0
+
+	if checkName == false {
+		return errors.New("vehicle is not exists")
+	}
+
+	return nil
 }

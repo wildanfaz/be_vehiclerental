@@ -11,6 +11,9 @@ type UsersRepo interface {
 	SaveUser(body *models.User) (*models.User, error)
 	ChangeUser(vars string, body *models.User) (*models.User, error)
 	RemoveUser(vars string, body *models.User) (*models.User, error)
+	CheckDB(body *models.User) error
+	CheckVars(vars string) error
+	CheckNameDB(vars string) error
 }
 
 type UsersService interface {

@@ -35,6 +35,10 @@ func (svc *histories_service) AddHistory(data *models.History) *libs.Resp {
 }
 
 func (svc *histories_service) UpdateHistory(vars string, data *models.History) *libs.Resp {
+	if check := svc.repo.CheckId(vars, data); check != nil {
+		return libs.Response(nil, 400, "failed update data", check)
+	}
+
 	_, err := svc.repo.ChangeHistory(vars, data)
 
 	if err != nil {

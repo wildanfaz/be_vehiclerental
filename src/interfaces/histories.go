@@ -11,6 +11,7 @@ type HistoriesRepo interface {
 	ChangeHistory(vars string, body *models.History) (*models.History, error)
 	RemoveHistory(vars string, body *models.History) (*models.History, error)
 	FindHistory(search string) (*models.Histories, error)
+	CheckId(vars string, body *models.History) error
 }
 
 type HistoriesService interface {

@@ -35,6 +35,10 @@ func (svc *vehicles_service) AddVehicle(body *models.Vehicle) *libs.Resp {
 }
 
 func (svc *vehicles_service) UpdateVehicle(vars string, body *models.Vehicle) *libs.Resp {
+	if check := svc.repo.CheckId(vars, body); check != nil {
+		return libs.Response(nil, 400, "failed update data", check)
+	}
+
 	_, err := svc.repo.ChangeVehicle(vars, body)
 
 	if err != nil {
@@ -45,6 +49,10 @@ func (svc *vehicles_service) UpdateVehicle(vars string, body *models.Vehicle) *l
 }
 
 func (svc *vehicles_service) DeleteVehicle(vars string, body *models.Vehicle) *libs.Resp {
+	if check := svc.repo.CheckId(vars, body); check != nil {
+		return libs.Response(nil, 400, "failed delete data", check)
+	}
+
 	_, err := svc.repo.RemoveVehicle(vars, body)
 
 	if err != nil {

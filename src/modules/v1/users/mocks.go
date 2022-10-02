@@ -38,3 +38,15 @@ func (m *RepoMock) RemoveUser(vars string, body *models.User) (*models.User, err
 	args := m.mock.Called(vars, body)
 	return args.Get(0).(*models.User), nil
 }
+
+func (m *RepoMock) CheckDB(body *models.User) error {
+	return nil
+}
+
+func (m *RepoMock) CheckVars(name string) error {
+	return nil
+}
+
+func (m *RepoMock) CheckNameDB(name string) error {
+	return nil
+}

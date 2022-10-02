@@ -35,14 +35,14 @@ func (re *users_repo) SaveUser(body *models.User) (*models.User, error) {
 	// if exists {
 	// 	return nil, errors.New("name already exists")
 	// }
-	var exists int64
+	// var exists int64
 
-	re.db.Model(&body).Where("name = ? OR email = ?", body.Name, body.Email).Count(&exists)
-	isExists := exists > 0
+	// re.db.Model(&body).Where("name = ? OR email = ?", body.Name, body.Email).Count(&exists)
+	// isExists := exists > 0
 
-	if isExists {
-		return nil, errors.New("name or email already exists")
-	}
+	// if isExists {
+	// 	return nil, errors.New("name or email already exists")
+	// }
 
 	// hashpassword, err := helpers.Hashing(data.Password)
 
@@ -63,23 +63,23 @@ func (re *users_repo) ChangeUser(vars string, body *models.User) (*models.User, 
 	// if exists == true {
 	// 	return nil, errors.New("name already exists")
 	// }
-	var check int64
+	// var check int64
 
-	re.db.Model(&body).Where("name = ?", vars).Count(&check)
-	checkName := check > 0
+	// re.db.Model(&body).Where("name = ?", vars).Count(&check)
+	// checkName := check > 0
 
-	if checkName == false {
-		return nil, errors.New("name is not exists")
-	}
+	// if checkName == false {
+	// 	return nil, errors.New("name is not exists")
+	// }
 
-	var exists int64
+	// var exists int64
 
-	re.db.Model(&body).Where("name = ? or email = ?", body.Name, body.Email).Count(&exists)
-	isExists := exists > 0
+	// re.db.Model(&body).Where("name = ? or email = ?", body.Name, body.Email).Count(&exists)
+	// isExists := exists > 0
 
-	if isExists {
-		return nil, errors.New("name or email already exists")
-	}
+	// if isExists {
+	// 	return nil, errors.New("name or email already exists")
+	// }
 
 	result := re.db.Model(&body).Where("name = ?", vars).Updates(body)
 
@@ -91,14 +91,14 @@ func (re *users_repo) ChangeUser(vars string, body *models.User) (*models.User, 
 }
 
 func (re *users_repo) RemoveUser(vars string, body *models.User) (*models.User, error) {
-	var check int64
+	// var check int64
 
-	re.db.Model(&body).Where("name = ?", vars).Count(&check)
-	checkName := check > 0
+	// re.db.Model(&body).Where("name = ?", vars).Count(&check)
+	// checkName := check > 0
 
-	if checkName == false {
-		return nil, errors.New("name is not exists")
-	}
+	// if checkName == false {
+	// 	return nil, errors.New("name is not exists")
+	// }
 
 	result := re.db.Where("name = ?", vars).Delete(body)
 
@@ -127,6 +127,47 @@ func (re *users_repo) FindUserByName(name string) (*models.User, error) {
 	}
 
 	return &user, nil
+}
+
+func (re *users_repo) CheckNameDB(vars string) error {
+	var user models.User
+	var check int64
+
+	re.db.Model(&user).Where("name = ?", vars).Count(&check)
+	checkName := check > 0
+
+	if checkName == false {
+		return errors.New("name is not exists")
+	}
+
+	return nil
+}
+
+func (re *users_repo) CheckDB(body *models.User) error {
+	var exists int64
+
+	re.db.Model(&body).Where("name = ? OR email = ?", body.Name, body.Email).Count(&exists)
+	isExists := exists > 0
+
+	if isExists {
+		return errors.New("name or email already exists")
+	}
+
+	return nil
+}
+
+func (re *users_repo) CheckVars(vars string) error {
+	var user models.User
+	var check int64
+
+	re.db.Model(&user).Where("name = ?", vars).Count(&check)
+	checkName := check > 0
+
+	if checkName == false {
+		return errors.New("name is not exists")
+	}
+
+	return nil
 }
 
 // func (re *users_repo) FindUser(r *http.Request) (*models.Users, error) {

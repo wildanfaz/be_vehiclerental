@@ -12,6 +12,7 @@ type VehiclesRepo interface {
 	RemoveVehicle(vars string, body *models.Vehicle) (*models.Vehicle, error)
 	FindVehicle(search string) (*models.Vehicles, error)
 	RatingVehicles() (*models.Vehicles, error)
+	CheckId(vars string, body *models.Vehicle) error
 }
 
 type VehiclesService interface {

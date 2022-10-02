@@ -33,6 +33,10 @@ func (svc *users_service) AddUser(body *models.User) *libs.Resp {
 
 	body.Password = hashpassword
 
+	if check := svc.repo.CheckDB(body); check != nil {
+		return libs.Response(nil, 400, "failed add data", check)
+	}
+
 	result, err := svc.repo.SaveUser(body)
 
 	if err != nil {
@@ -43,6 +47,14 @@ func (svc *users_service) AddUser(body *models.User) *libs.Resp {
 }
 
 func (svc *users_service) UpdateUser(vars string, body *models.User) *libs.Resp {
+	if checkVars := svc.repo.CheckVars(vars); checkVars != nil {
+		return libs.Response(nil, 400, "failed update data", checkVars)
+	}
+
+	if check := svc.repo.CheckDB(body); check != nil {
+		return libs.Response(nil, 400, "failed update data", check)
+	}
+
 	_, err := svc.repo.ChangeUser(vars, body)
 
 	if err != nil {
@@ -53,6 +65,10 @@ func (svc *users_service) UpdateUser(vars string, body *models.User) *libs.Resp 
 }
 
 func (svc *users_service) DeleteUser(vars string, body *models.User) *libs.Resp {
+	if check := svc.repo.CheckNameDB(vars); check != nil {
+		return libs.Response(nil, 400, "failed delete data", check)
+	}
+
 	_, err := svc.repo.RemoveUser(vars, body)
 
 	if err != nil {

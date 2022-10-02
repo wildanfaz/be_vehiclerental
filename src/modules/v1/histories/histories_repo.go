@@ -48,14 +48,14 @@ func (re *histories_repo) SaveHistory(body *models.History) (*models.History, er
 }
 
 func (re *histories_repo) ChangeHistory(vars string, body *models.History) (*models.History, error) {
-	var check int64
+	// var check int64
 
-	re.db.Model(&body).Where("history_id = ?", vars).Count(&check)
-	checkName := check > 0
+	// re.db.Model(&body).Where("history_id = ?", vars).Count(&check)
+	// checkName := check > 0
 
-	if checkName == false {
-		return nil, errors.New("history is not exists")
-	}
+	// if checkName == false {
+	// 	return nil, errors.New("history is not exists")
+	// }
 
 	result := re.db.Model(&body).Where("history_id = ?", vars).Updates(body)
 
@@ -69,14 +69,14 @@ func (re *histories_repo) ChangeHistory(vars string, body *models.History) (*mod
 func (re *histories_repo) RemoveHistory(vars string, body *models.History) (*models.History, error) {
 	var vehicle models.Vehicle
 
-	var check int64
+	// var check int64
 
-	re.db.Model(&body).Where("history_id = ?", vars).Count(&check)
-	checkName := check > 0
+	// re.db.Model(&body).Where("history_id = ?", vars).Count(&check)
+	// checkName := check > 0
 
-	if checkName == false {
-		return nil, errors.New("history is not exists")
-	}
+	// if checkName == false {
+	// 	return nil, errors.New("history is not exists")
+	// }
 
 	re.db.Where("history_id = ?", vars).First(&body)
 
@@ -107,4 +107,17 @@ func (re *histories_repo) FindHistory(search string) (*models.Histories, error) 
 	}
 
 	return &data, nil
+}
+
+func (re *histories_repo) CheckId(vars string, body *models.History) error {
+	var check int64
+
+	re.db.Model(&body).Where("history_id = ?", vars).Count(&check)
+	checkName := check > 0
+
+	if checkName == false {
+		return errors.New("history is not exists")
+	}
+
+	return nil
 }
