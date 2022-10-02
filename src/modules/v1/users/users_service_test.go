@@ -69,3 +69,33 @@ func TestAddUser(t *testing.T) {
 	// typeInt := 123
 	// assert.IsType(t, typeInt, "num", "actual is not int")
 }
+
+func TestUpdateUser(t *testing.T) {
+	repo := RepoMock{mock.Mock{}}
+	service := NewService(&repo)
+
+	var dataMock = models.User{
+		Name:  "faz1",
+		Email: "faz1@gmail.com",
+	}
+
+	repo.mock.On("ChangeUser", "faz", &dataMock).Return(&dataMock, nil)
+	data := service.UpdateUser("faz", &dataMock)
+
+	assert.Equal(t, 200, data.Status, "status is not 200")
+}
+
+func TestDeleteUser(t *testing.T) {
+	repo := RepoMock{mock.Mock{}}
+	service := NewService(&repo)
+
+	var dataMock = models.User{
+		Name:  "faz1",
+		Email: "faz1@gmail.com",
+	}
+
+	repo.mock.On("RemoveUser", "faz1", &dataMock).Return(&dataMock, nil)
+	data := service.DeleteUser("faz1", &dataMock)
+
+	assert.Equal(t, 200, data.Status, "status is not 200")
+}
