@@ -9,6 +9,24 @@ import (
 	"github.com/wildanfaz/vehicle_rental/src/database/orm/models"
 )
 
+func TestGetUserByName(t *testing.T) {
+	repo := RepoMock{mock.Mock{}}
+	service := NewService(&repo)
+
+	var dataMock = models.User{
+		Name:  "user",
+		Email: "user@gmail.com",
+	}
+
+	repo.mock.On("FindUserByName", "user").Return(&dataMock, nil)
+
+	data := service.GetUserByName("user")
+
+	fmt.Println(data)
+	result := data.Data.(*models.User)
+	assert.Equal(t, "user", result.Name, "name is different")
+}
+
 func TestGetAllUsers(t *testing.T) {
 	repo := RepoMock{mock.Mock{}}
 	service := NewService(&repo)
@@ -28,24 +46,6 @@ func TestGetAllUsers(t *testing.T) {
 	for i, v := range *result {
 		assert.Equal(t, dataMock[i].Name, v.Name, "name is different")
 	}
-}
-
-func TestGetUserByName(t *testing.T) {
-	repo := RepoMock{mock.Mock{}}
-	service := NewService(&repo)
-
-	var dataMock = models.User{
-		Name:  "user",
-		Email: "user@gmail.com",
-	}
-
-	repo.mock.On("FindUserByName", "user").Return(&dataMock, nil)
-
-	data := service.GetUserByName("user")
-
-	fmt.Println(data)
-	result := data.Data.(*models.User)
-	assert.Equal(t, "user", result.Name, "name is different")
 }
 
 func TestAddUser(t *testing.T) {
