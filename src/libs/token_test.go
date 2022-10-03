@@ -20,3 +20,10 @@ func TestCreateToken(t *testing.T) {
 	assert.Nil(t, err, "error is not nil")
 	assert.IsType(t, "string", token)
 }
+
+func TestCheckToken(t *testing.T) {
+	result, err := CheckToken("token")
+
+	assert.NotNil(t, err, "error nil")
+	assert.Nil(t, result, "token nil")
+}
