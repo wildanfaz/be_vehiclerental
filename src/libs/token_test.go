@@ -22,8 +22,15 @@ func TestCreateToken(t *testing.T) {
 }
 
 func TestCheckToken(t *testing.T) {
-	result, err := CheckToken("token")
+	result := NewToken("user", "user")
 
-	assert.NotNil(t, err, "error nil")
-	assert.Nil(t, result, "token nil")
+	token, err := result.Create()
+
+	assert.Nil(t, err, "error is not nil")
+	assert.IsType(t, "string", token)
+
+	resultToken, err := CheckToken(token)
+
+	assert.Nil(t, err, "error is not nil")
+	assert.NotNil(t, resultToken, "token nil")
 }
