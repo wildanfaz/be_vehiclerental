@@ -9,12 +9,6 @@ type RepoMock struct {
 	mock mock.Mock
 }
 
-func (m *RepoMock) FindAllUsers() (*models.Users, error) {
-	args := m.mock.Called()
-	return args.Get(0).(*models.Users), nil
-}
-
-// **test 1
 func (m *RepoMock) FindUserByName(name string) (*models.User, error) {
 	if name == "" {
 		name = "user"
@@ -23,7 +17,11 @@ func (m *RepoMock) FindUserByName(name string) (*models.User, error) {
 	return args.Get(0).(*models.User), nil
 }
 
-// **test 2
+func (m *RepoMock) FindAllUsers() (*models.Users, error) {
+	args := m.mock.Called()
+	return args.Get(0).(*models.Users), nil
+}
+
 func (m *RepoMock) SaveUser(body *models.User) (*models.User, error) {
 	args := m.mock.Called(body)
 	return args.Get(0).(*models.User), nil
