@@ -1,6 +1,6 @@
 import http from 'k6/http';
 import { check, sleep } from 'k6';
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTY2NDcxNjQ3MX0.H_d-RAv0JcDBtPpnJEUhRzRR7vFTJ1sH3C-4LcgSkJA'
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE2NjQ4NTkxODh9.yb3uGoAXqBfQ310gN9rCn0203faobIA2T500yAxqa8U'
 
 export const options = {
   stages: [
