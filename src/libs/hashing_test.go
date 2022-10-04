@@ -31,5 +31,5 @@ func TestCheckPassword(t *testing.T) {
 	result, _ := HashingPassword(myPassword)
 	err := CheckPassword(result, myPassword)
 
-	assert.Nil(t, err, "success hash password")
+	assert.Nil(t, err, "incorrect password")
 }
