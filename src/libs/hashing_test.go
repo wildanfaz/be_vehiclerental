@@ -27,7 +27,9 @@ func TestHashingPassword(t *testing.T) {
 }
 
 func TestCheckPassword(t *testing.T) {
-	err := CheckPassword("aiueo", "mypassword")
+	myPassword := "hellotest123"
+	result, _ := HashingPassword(myPassword)
+	err := CheckPassword(result, myPassword)
 
-	assert.NotNil(t, err, "success hash password")
+	assert.Nil(t, err, "success hash password")
 }
