@@ -21,7 +21,7 @@ func server(cmd *cobra.Command, args []string) error {
 	if mainRoute, err := routers.New(); err == nil {
 		c := cors.New(cors.Options{
 			AllowedOrigins: []string{"http://localhost:3000"},
-			AllowedHeaders: []string{"Content-Type"},
+			AllowedHeaders: []string{"accept","authorization", "content-type"},
 			AllowCredentials: true,
 			// Enable Debugging for testing, consider disabling in production
 			Debug: true,
