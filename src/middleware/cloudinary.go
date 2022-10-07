@@ -49,7 +49,12 @@ func CloudinaryAddImg(next http.HandlerFunc) http.HandlerFunc {
 			return
 		}
 
-		upload, err := cld.Upload.Upload(cntx, file, uploader.UploadParams{Folder: "vehiclerental", PublicID: name})
+		upload, errs2 := cld.Upload.Upload(cntx, file, uploader.UploadParams{Folder: "vehiclerental", PublicID: name})
+
+		if errs2 != nil {
+			libs.Response(nil, 400, "failed upload cloudinary", errs2).Send(w)
+			return
+		}
 
 		libs.Response(nil, 200, "success upload file", nil).Send(w)
 
