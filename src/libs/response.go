@@ -3,8 +3,6 @@ package libs
 import (
 	"encoding/json"
 	"net/http"
-
-	"github.com/rs/cors"
 )
 
 type Resp struct {
@@ -19,13 +17,6 @@ func (res *Resp) Send(w http.ResponseWriter) {
 	// w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
 	// w.Header().Set("Access-Control-Allow-Methods", "*")
 	// w.Header().Set("Access-Control-Allow-Headers", "*")
-	c := cors.New(cors.Options{
-		AllowedOrigins: []string{"http://localhost:3000"},
-		AllowCredentials: true,
-		// Enable Debugging for testing, consider disabling in production
-		Debug: true,
-	})
-	c.HandlerFunc(w,&http.Request{})
 
 	w.Header().Set("Content-Type", "application/json")
 
