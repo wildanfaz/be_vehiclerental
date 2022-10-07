@@ -26,4 +26,5 @@ func New(rt *mux.Router, db *gorm.DB) {
 
 	//**test chain midlleware
 	route.HandleFunc("/v", middleware.HandlerChain(middleware.CheckAuth("User"), middleware.Hello, middleware.UploadFileImage).Then(ctrl.AddVehicle)).Methods("POST")
+
 }
