@@ -29,6 +29,9 @@ func CloudinaryAddImg(next http.HandlerFunc) http.HandlerFunc {
 			return
 		}
 
+		cntx, cancel := context.WithTimeout(context.Background(), 5 * time.Second)
+		defer cancel()
+
 		//**file validation
 		checkType := handlerFile.Header.Get("Content-Type") == "image/jpeg" || handlerFile.Header.Get("Content-Type") == "image/jpg" || handlerFile.Header.Get("Content-Type") == "image/png"
 
@@ -46,7 +49,7 @@ func CloudinaryAddImg(next http.HandlerFunc) http.HandlerFunc {
 			return
 		}
 
-		upload, err := cld.Upload.Upload(nil, file, uploader.UploadParams{Folder: "vehiclerental", PublicID: name})
+		upload, err := cld.Upload.Upload(cntx, file, uploader.UploadParams{Folder: "vehiclerental", PublicID: name})
 
 		libs.Response(nil, 200, "success upload file", nil).Send(w)
 
