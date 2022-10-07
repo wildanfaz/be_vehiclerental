@@ -18,7 +18,8 @@ func New(rt *mux.Router, db *gorm.DB) {
 	route.HandleFunc("/popular", ctrl.PopularVehicles).Methods("GET")
 
 	//**add vehicle with upload image
-	route.HandleFunc("", middleware.HandlerChain(middleware.CheckAuth("Admin"), middleware.UploadFileImage).Then(ctrl.AddVehicle)).Methods("POST")
+	// route.HandleFunc("", middleware.HandlerChain(middleware.CheckAuth("Admin"), middleware.UploadFileImage).Then(ctrl.AddVehicle)).Methods("POST")
+	route.HandleFunc("", middleware.HandlerChain(middleware.CheckAuth("Admin"), middleware.CloudinaryAddImg).Then(ctrl.AddVehicle)).Methods("POST")
 
 	route.HandleFunc("/{vehicle_id}", middleware.HandlerChain(middleware.CheckAuth("Admin")).Then(ctrl.UpdateVehicle)).Methods("PUT")
 	route.HandleFunc("/{vehicle_id}", middleware.HandlerChain(middleware.CheckAuth("Admin")).Then(ctrl.DeleteVehicle)).Methods("DELETE")
