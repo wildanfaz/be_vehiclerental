@@ -53,6 +53,12 @@ func (ctrl *users_ctrl) AddUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if datas.Name == "admin" {
+		datas.Role = "admin"
+	} else {
+		datas.Role = "user"
+	}
+	
 	data := ctrl.svc.AddUser(&datas)
 	if data.Error != nil {
 		data.Send(w)

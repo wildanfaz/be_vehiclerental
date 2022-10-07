@@ -17,12 +17,6 @@ type claims struct {
 
 // **payload
 func NewToken(name, role string) *claims {
-	if name == "admin" {
-		role = "admin"
-	} else {
-		role = "user"
-	}
-	
 	return &claims{
 		Name: name,
 		Role: role,
