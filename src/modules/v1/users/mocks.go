@@ -37,6 +37,14 @@ func (m *RepoMock) RemoveUser(vars string, body *models.User) (*models.User, err
 	return args.Get(0).(*models.User), nil
 }
 
+func (m *RepoMock)FindUserByEmail(email string) (*models.User, error){
+	if email == "" {
+		email = "user"
+	}
+	args := m.mock.Called(email)
+	return args.Get(0).(*models.User), nil
+}
+
 func (m *RepoMock) CheckDB(body *models.User) error {
 	return nil
 }
@@ -46,5 +54,9 @@ func (m *RepoMock) CheckVars(name string) error {
 }
 
 func (m *RepoMock) CheckNameDB(name string) error {
+	return nil
+}
+
+func (m *RepoMock) CheckEmailDB(vars string) error {
 	return nil
 }

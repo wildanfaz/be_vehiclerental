@@ -8,12 +8,14 @@ import (
 type UsersRepo interface {
 	FindAllUsers() (*models.Users, error)
 	FindUserByName(name string) (*models.User, error)
+	FindUserByEmail(email string) (*models.User, error)
 	SaveUser(body *models.User) (*models.User, error)
 	ChangeUser(vars string, body *models.User) (*models.User, error)
 	RemoveUser(vars string, body *models.User) (*models.User, error)
 	CheckDB(body *models.User) error
 	CheckVars(vars string) error
 	CheckNameDB(vars string) error
+	CheckEmailDB(vars string) error
 }
 
 type UsersService interface {

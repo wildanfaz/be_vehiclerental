@@ -129,6 +129,40 @@ func (re *users_repo) FindUserByName(name string) (*models.User, error) {
 	return &user, nil
 }
 
+func (re *users_repo) FindUserByEmail(email string) (*models.User, error) {
+	// var check int64
+
+	// re.db.Model(&user).Where("email = ?", email).Count(&check)
+	// checkName := check > 0
+
+	// if checkName == false {
+	// 	return nil, errors.New("email is not exists")
+	// }
+	var user models.User
+
+	result := re.db.Where("email = ?", email).Find(&user)
+
+	if result.Error != nil {
+		return nil, errors.New("error in repo FindUserByEmail")
+	}
+
+	return &user, nil
+}
+
+func (re *users_repo) CheckEmailDB(vars string) error {
+	var user models.User
+	var check int64
+
+	re.db.Model(&user).Where("email = ?", vars).Count(&check)
+	checkName := check > 0
+
+	if checkName == false {
+		return errors.New("email is not exists")
+	}
+
+	return nil
+}
+
 func (re *users_repo) CheckNameDB(vars string) error {
 	var user models.User
 	var check int64

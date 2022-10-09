@@ -20,7 +20,13 @@ func NewService(repo interfaces.UsersRepo) *auth_service {
 }
 
 func (auth *auth_service) Login(body models.User) *libs.Resp {
-	user, err := auth.repo.FindUserByName(body.Name)
+	//**user, err := auth.repo.FindUserByName(body.Name)
+
+	if errs:=auth.repo.CheckEmailDB(body.Email);errs != nil {
+		return libs.Response(nil, 401, "incorrect email", errs)
+	}
+
+	user, err := auth.repo.FindUserByEmail(body.Email)
 
 	if err != nil {
 		return libs.Response(nil, 401, "incorrect name", err)

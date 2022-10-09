@@ -42,7 +42,7 @@ func CheckAuth(roles ...string) Middleware {
 				return
 			}
 
-			ctx := context.WithValue(r.Context(), "name", checkToken.Name)
+			ctx := context.WithValue(r.Context(), "email", checkToken.Email)
 
 			next.ServeHTTP(w, r.WithContext(ctx))
 		}
