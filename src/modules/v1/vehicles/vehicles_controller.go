@@ -128,3 +128,16 @@ func (ctrl *vehicles_ctrl) GetVehicleDetail(w http.ResponseWriter, r *http.Reque
 
 	data.Send(w)
 }
+
+func (ctrl *vehicles_ctrl) TypeVehicles(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	typeVehicle := vars["type"]
+	data := ctrl.svc.TypeVehicles(typeVehicle)
+
+	if data.Error != nil {
+		data.Send(w)
+		return
+	}
+
+	data.Send(w)
+}

@@ -112,6 +112,18 @@ func (re *vehicles_repo) VehicleDetail(id string) (*models.Vehicle, error) {
 	return &data, nil
 }
 
+func (re *vehicles_repo) CategoryVehicles(typeVehicle string) (*models.Vehicles, error) {
+	var data models.Vehicles
+
+	result := re.db.Where("category = ?", typeVehicle).Order("rating desc, total_rented desc").Find(&data)
+
+	if result.Error != nil {
+		return nil, errors.New("failed get vehicle type")
+	}
+
+	return &data, nil
+}
+
 func (re *vehicles_repo) CheckId(vars string, body *models.Vehicle) error {
 	var check int64
 

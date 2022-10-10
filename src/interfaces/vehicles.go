@@ -13,6 +13,7 @@ type VehiclesRepo interface {
 	FindVehicle(search string) (*models.Vehicles, error)
 	VehicleDetail(id string)(*models.Vehicle, error)
 	RatingVehicles(offset int) (*models.Vehicles, error)
+	CategoryVehicles(typeVehicle string) (*models.Vehicles, error)
 	CheckId(vars string, body *models.Vehicle) error
 }
 
@@ -24,4 +25,5 @@ type VehiclesService interface {
 	SearchVehicle(search string) *libs.Resp
 	PopularVehicles(offset int) *libs.Resp
 	GetVehicleDetail(id string) *libs.Resp
+	TypeVehicles(typeVehicle string) *libs.Resp
 }
