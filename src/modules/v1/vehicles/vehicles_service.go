@@ -72,8 +72,18 @@ func (svc *vehicles_service) SearchVehicle(search string) *libs.Resp {
 	return libs.Response(data, 200, "success search data", nil)
 }
 
-func (svc *vehicles_service) PopularVehicles() *libs.Resp {
-	data, err := svc.repo.RatingVehicles()
+func (svc *vehicles_service) PopularVehicles(offset int) *libs.Resp {
+	data, err := svc.repo.RatingVehicles(offset)
+
+	if err != nil {
+		return libs.Response(data, 400, "failed get data", err)
+	}
+
+	return libs.Response(data, 200, "success get data", nil)
+}
+
+func (svc *vehicles_service) GetVehicleDetail(id string) *libs.Resp {
+	data, err := svc.repo.VehicleDetail(id)
 
 	if err != nil {
 		return libs.Response(data, 400, "failed get data", err)

@@ -88,13 +88,25 @@ func (re *vehicles_repo) FindVehicle(search string) (*models.Vehicles, error) {
 	return &data, nil
 }
 
-func (re *vehicles_repo) RatingVehicles() (*models.Vehicles, error) {
+func (re *vehicles_repo) RatingVehicles(offset int) (*models.Vehicles, error) {
 	var data models.Vehicles
 
-	result := re.db.Order("rating desc, total_rented desc").Find(&data)
+	result := re.db.Limit(4).Offset(offset * 4).Order("rating desc, total_rented desc").Find(&data)
 
 	if result.Error != nil {
 		return nil, errors.New("failed get vehicles")
+	}
+
+	return &data, nil
+}
+
+func (re *vehicles_repo) VehicleDetail(id string) (*models.Vehicle, error) {
+	var data models.Vehicle
+
+	result := re.db.Where("vehicle_id = ?", id).Order("rating desc, total_rented desc").Find(&data)
+
+	if result.Error != nil {
+		return nil, errors.New("failed get vehicle detail")
 	}
 
 	return &data, nil

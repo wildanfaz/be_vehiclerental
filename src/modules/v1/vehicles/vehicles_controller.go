@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/gorilla/mux"
 	"github.com/gorilla/schema"
@@ -102,7 +103,23 @@ func (ctrl *vehicles_ctrl) SearchVehicle(w http.ResponseWriter, r *http.Request)
 }
 
 func (ctrl *vehicles_ctrl) PopularVehicles(w http.ResponseWriter, r *http.Request) {
-	data := ctrl.svc.PopularVehicles()
+	vars := mux.Vars(r)
+	res := vars["offset"]
+	offset,_ := strconv.Atoi(res)
+	data := ctrl.svc.PopularVehicles(offset)
+
+	if data.Error != nil {
+		data.Send(w)
+		return
+	}
+
+	data.Send(w)
+}
+
+func (ctrl *vehicles_ctrl) GetVehicleDetail(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id := vars["id"]
+	data := ctrl.svc.GetVehicleDetail(id)
 
 	if data.Error != nil {
 		data.Send(w)

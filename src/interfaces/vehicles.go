@@ -11,7 +11,8 @@ type VehiclesRepo interface {
 	ChangeVehicle(vars string, body *models.Vehicle) (*models.Vehicle, error)
 	RemoveVehicle(vars string, body *models.Vehicle) (*models.Vehicle, error)
 	FindVehicle(search string) (*models.Vehicles, error)
-	RatingVehicles() (*models.Vehicles, error)
+	VehicleDetail(id string)(*models.Vehicle, error)
+	RatingVehicles(offset int) (*models.Vehicles, error)
 	CheckId(vars string, body *models.Vehicle) error
 }
 
@@ -21,5 +22,6 @@ type VehiclesService interface {
 	UpdateVehicle(vars string, body *models.Vehicle) *libs.Resp
 	DeleteVehicle(vars string, body *models.Vehicle) *libs.Resp
 	SearchVehicle(search string) *libs.Resp
-	PopularVehicles() *libs.Resp
+	PopularVehicles(offset int) *libs.Resp
+	GetVehicleDetail(id string) *libs.Resp
 }
