@@ -3,11 +3,13 @@
 Vehicle Rental server-side part 3
 
 ## Clone
+
 ```bash
-git clone https://github.com/wildanfaz/backendgolang2_week10.git
+git clone https://github.com/wildanfaz/be_vehiclerental.git
 ```
 
 ## Dependencies
+
 ```bash
 go mod tidy
 ```
@@ -28,14 +30,15 @@ go mod tidy
 - Heroku
 
 ## DB Migration
-Migrate
--
+
+## Migrate
+
 ```bash
 go run main.go migrate --up
 ```
 
-Rollback
--
+## Rollback
+
 ```bash
 go run main.go migrate --down
 ```
