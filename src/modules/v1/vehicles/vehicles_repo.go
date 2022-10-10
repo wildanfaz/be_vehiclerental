@@ -117,7 +117,7 @@ func (re *vehicles_repo) CategoryVehicles(typeVehicle string) (*models.Vehicles,
 	var data models.Vehicles
 
 
-	result := re.db.Where("LOWER(category) = ?", strings.ToLower(typeVehicle)).Order("rating desc, total_rented desc").Find(&data)
+	result := re.db.Limit(4).Where("LOWER(category) = ?", strings.ToLower(typeVehicle)).Order("rating desc, total_rented desc").Find(&data)
 
 	if result.Error != nil {
 		return nil, errors.New("failed get vehicle type")
