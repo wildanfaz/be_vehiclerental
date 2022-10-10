@@ -2,6 +2,7 @@ package vehicles
 
 import (
 	"errors"
+	"strings"
 
 	"github.com/wildanfaz/vehicle_rental/src/database/orm/models"
 	"gorm.io/gorm"
@@ -115,7 +116,8 @@ func (re *vehicles_repo) VehicleDetail(id string) (*models.Vehicle, error) {
 func (re *vehicles_repo) CategoryVehicles(typeVehicle string) (*models.Vehicles, error) {
 	var data models.Vehicles
 
-	result := re.db.Where("category = ?", typeVehicle).Order("rating desc, total_rented desc").Find(&data)
+
+	result := re.db.Where("LOWER(category) = ?", strings.ToLower(typeVehicle)).Order("rating desc, total_rented desc").Find(&data)
 
 	if result.Error != nil {
 		return nil, errors.New("failed get vehicle type")
