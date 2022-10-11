@@ -79,7 +79,8 @@ func (re *vehicles_repo) RemoveVehicle(vars string, body *models.Vehicle) (*mode
 func (re *vehicles_repo) FindVehicle(search string) (*models.Vehicles, error) {
 	var data models.Vehicles
 
-	s := "%" + search + "%"
+
+	s := "%" + strings.ToLower(search) + "%"
 	result := re.db.Where("LOWER(vehicle_name) LIKE ?", s).Order("created_at desc").Find(&data)
 
 	if result.Error != nil {
