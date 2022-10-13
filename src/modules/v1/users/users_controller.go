@@ -32,9 +32,9 @@ func (ctrl *users_ctrl) GetAllUsers(w http.ResponseWriter, r *http.Request) {
 
 func (ctrl *users_ctrl) GetUser(w http.ResponseWriter, r *http.Request) {
 	claims_users := r.Context().Value("email")
-	fmt.Println(claims_users.(string))
+	email := fmt.Sprint(claims_users)
 
-	data := ctrl.svc.GetUserByEmail(claims_users.(string))
+	data := ctrl.svc.GetUserByEmail(email)
 	// data := ctrl.svc.GetUserByName(claims_users.(string))
 
 	if data.Error != nil {

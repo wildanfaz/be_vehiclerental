@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"strings"
 
@@ -43,7 +44,7 @@ func CheckAuth(roles ...string) Middleware {
 			}
 
 			ctx := context.WithValue(r.Context(), "email", checkToken.Email)
-
+			fmt.Println("oke", checkToken.Email)
 			next.ServeHTTP(w, r.WithContext(ctx))
 		}
 	}

@@ -29,14 +29,14 @@ func (auth *auth_service) Login(body models.User) *libs.Resp {
 	user, err := auth.repo.FindUserByEmail(body.Email)
 
 	if err != nil {
-		return libs.Response(nil, 401, "incorrect name", err)
+		return libs.Response(nil, 401, "incorrect email", err)
 	}
 
 	if err := libs.CheckPassword(user.Password, body.Password); err != nil {
 		return libs.Response(nil, 401, "incorrect password", err)
 	}
 
-	token := libs.NewToken(body.Name, user.Role)
+	token := libs.NewToken(body.Email, user.Role)
 	theToken, err := token.Create()
 
 	if err != nil {
