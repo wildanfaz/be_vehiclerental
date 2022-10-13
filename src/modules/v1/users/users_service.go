@@ -88,6 +88,16 @@ func (svc *users_service) GetUserByName(name string) *libs.Resp {
 	return libs.Response(data, 200, "success get data", nil)
 }
 
+func (svc *users_service) GetUserByEmail(email string) *libs.Resp {
+	data, err := svc.repo.FindUserByEmail(email)
+
+	if err != nil {
+		return libs.Response(nil, 404, "failed get data", err)
+	}
+
+	return libs.Response(data, 200, "success get data", nil)
+}
+
 // func (re *users_service) SearchUser(r *http.Request) (*models.Users, error) {
 // 	data, err := re.repo.FindUser(r)
 

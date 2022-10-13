@@ -21,6 +21,7 @@ type UsersRepo interface {
 type UsersService interface {
 	GetAllUsers() *libs.Resp
 	GetUserByName(name string) *libs.Resp
+	GetUserByEmail(email string) *libs.Resp
 	AddUser(body *models.User) *libs.Resp
 	UpdateUser(vars string, body *models.User) *libs.Resp
 	DeleteUser(vars string, body *models.User) *libs.Resp
