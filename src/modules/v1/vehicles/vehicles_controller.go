@@ -141,3 +141,16 @@ func (ctrl *vehicles_ctrl) TypeVehicles(w http.ResponseWriter, r *http.Request) 
 
 	data.Send(w)
 }
+
+func (ctrl *vehicles_ctrl) SortLocation(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	location := vars["location"]
+	data := ctrl.svc.TypeVehicles(location)
+
+	if data.Error != nil {
+		data.Send(w)
+		return
+	}
+
+	data.Send(w)
+}

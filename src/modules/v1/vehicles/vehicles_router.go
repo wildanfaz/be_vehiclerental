@@ -18,6 +18,7 @@ func New(rt *mux.Router, db *gorm.DB) {
 	route.HandleFunc("/search", ctrl.SearchVehicle).Methods("GET")
 	route.HandleFunc("/popular/{offset}", ctrl.PopularVehicles).Methods("GET")
 	route.HandleFunc("/{type}", ctrl.TypeVehicles).Methods("GET")
+	route.HandleFunc("/{location}", ctrl.SortLocation).Methods("GET")
 
 	//**add vehicle with upload image
 	// route.HandleFunc("", middleware.HandlerChain(middleware.CheckAuth("Admin"), middleware.UploadFileImage).Then(ctrl.AddVehicle)).Methods("POST")
