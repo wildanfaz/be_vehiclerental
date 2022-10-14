@@ -15,6 +15,7 @@ type VehiclesRepo interface {
 	RatingVehicles(offset int) (*models.Vehicles, error)
 	CategoryVehicles(typeVehicle string) (*models.Vehicles, error)
 	Location(location string) (*models.Vehicles, error)
+	Type(typeVehicle string) (*models.Vehicles, error)
 	CheckId(vars string, body *models.Vehicle) error
 }
 
@@ -28,4 +29,5 @@ type VehiclesService interface {
 	GetVehicleDetail(id string) *libs.Resp
 	TypeVehicles(typeVehicle string) *libs.Resp
 	SortLocation(location string) *libs.Resp
+	SortType(typeVehicle string) *libs.Resp
 }

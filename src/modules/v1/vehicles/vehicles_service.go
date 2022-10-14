@@ -111,3 +111,13 @@ func (svc *vehicles_service) SortLocation(location string) *libs.Resp {
 
 	return libs.Response(data, 200, "success get data", nil)
 }
+
+func (svc *vehicles_service) SortType(typeVehicle string) *libs.Resp {
+	data, err := svc.repo.Type(typeVehicle)
+
+	if err != nil {
+		return libs.Response(data, 400, "failed get data", err)
+	}
+
+	return libs.Response(data, 200, "success get data", nil)
+}
