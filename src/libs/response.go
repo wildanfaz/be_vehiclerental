@@ -14,10 +14,9 @@ type Resp struct {
 }
 
 func (res *Resp) Send(w http.ResponseWriter) {
-	w.Header().Add("Access-Control-Allow-Origin", "*")
-    w.Header().Add("Access-Control-Allow-Credentials", "true")
-    w.Header().Add("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
-    w.Header().Add("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	// w.Header().Set("Access-Control-Allow-Origin", "*")
+	// w.Header().Set("Access-Control-Allow-Methods", "*")
+	// w.Header().Set("Access-Control-Allow-Headers", "*")
 
 	w.Header().Set("Content-Type", "application/json")
 
