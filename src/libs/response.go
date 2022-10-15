@@ -15,9 +15,6 @@ type Resp struct {
 
 func (res *Resp) Send(w http.ResponseWriter) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Access-Control-Allow-Methods", "*")
-	w.Header().Set("Access-Control-Allow-Headers", "*")
-
 	w.Header().Set("Content-Type", "application/json")
 
 	w.WriteHeader(res.Status)
