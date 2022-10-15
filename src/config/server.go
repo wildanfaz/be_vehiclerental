@@ -22,9 +22,9 @@ func server(cmd *cobra.Command, args []string) error {
 		c := cors.New(cors.Options{
 			AllowedOrigins: []string{"*"},
 			AllowedHeaders: []string{"*"},
-			AllowCredentials: true,
+			AllowCredentials: false,
 			// Enable Debugging for testing, consider disabling in production
-			Debug: true,
+			Debug: false,
 		})
 
 		handlerCors := c.Handler(mainRoute)
