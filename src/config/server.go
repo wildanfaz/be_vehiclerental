@@ -23,6 +23,8 @@ func server(cmd *cobra.Command, args []string) error {
 			AllowedOrigins: []string{"*"},
 			AllowedHeaders: []string{"*"},
 			AllowCredentials: true,
+			// Enable Debugging for testing, consider disabling in production
+			Debug: false,
 		})
 
 		handlerCors := c.Handler(mainRoute)
