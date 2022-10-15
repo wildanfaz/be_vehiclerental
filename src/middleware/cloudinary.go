@@ -33,7 +33,7 @@ func CloudinaryAddImg(next http.HandlerFunc) http.HandlerFunc {
 		defer cancel()
 
 		//**file validation
-		checkType := handlerFile.Header.Get("Content-Type") == "image/jpeg" || handlerFile.Header.Get("Content-Type") == "image/jpg" || handlerFile.Header.Get("Content-Type") == "image/png"
+		checkType := handlerFile.Header.Get("Content-Type") == "image/jpeg" || handlerFile.Header.Get("Content-Type") == "image/jpg" || handlerFile.Header.Get("Content-Type") == "image/png" || handlerFile.Header.Get("Content-Type") == "image/webp"
 
 		if !checkType {
 			libs.Response(nil, 400, "invalid file format, only support image file", err).Send(w)
