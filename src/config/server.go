@@ -22,7 +22,7 @@ func server(cmd *cobra.Command, args []string) error {
 		c := cors.New(cors.Options{
 			AllowedOrigins: []string{"*"},
 			AllowedHeaders: []string{"*"},
-			AllowCredentials: false,
+			AllowCredentials: true,
 			// Enable Debugging for testing, consider disabling in production
 			Debug: false,
 		})
