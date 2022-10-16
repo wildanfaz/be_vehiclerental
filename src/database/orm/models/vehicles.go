@@ -4,7 +4,7 @@ import "time"
 
 type Vehicle struct {
 	VehicleId   uint      `gorm:"primaryKey" json:"vehicle_id" form:"vehicle_id"`
-	VehicleName string    `json:"vehicle_name,omitempty" form:"vehicle_name"`
+	VehicleName string    `json:"vehicle_name,string,omitempty" form:"vehicle_name"`
 	Location    string    `json:"location,omitempty" form:"location"`
 	Description string    `json:"description,omitempty" form:"description"`
 	Price       int       `json:"price,string,omitempty" form:"price"`
