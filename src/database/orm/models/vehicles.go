@@ -1,7 +1,6 @@
 package models
 
 import (
-	"encoding/json"
 	"time"
 )
 
@@ -12,12 +11,12 @@ type Vehicle struct {
 	Description string    `json:"description,omitempty" form:"description"`
 	Price       int       `json:"price,int,omitempty" form:"price"`
 	Status      string    `json:"status,omitempty" form:"status"`
-	Stock       int       `json:"stock,string,omitempty" form:"stock"`
+	Stock       int       `json:"stock,int,omitempty" form:"stock"`
 	Category    string    `json:"category,omitempty" form:"category"`
 	Image       string    `json:"image,omitempty" form:"image"`
 	CreatedAt   time.Time `gorm:"default:current_timestamp" json:"created_at" form:"created_at"`
 	UpdatedAt   time.Time `gorm:"default:current_timestamp" json:"updated_at" form:"updated_at"`
-	Rating      json.Number   `json:"rating,omitempty" form:"rating"`
+	Rating      float64   `json:"rating,float,omitempty" form:"rating"`
 	TotalRented int       `json:"total_rented,string,omitempty" form:"total_rented"`
 }
 
