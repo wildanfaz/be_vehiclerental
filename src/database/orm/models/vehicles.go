@@ -7,7 +7,7 @@ type Vehicle struct {
 	VehicleName string    `json:"vehicle_name,omitempty" form:"vehicle_name"`
 	Location    string    `json:"location,omitempty" form:"location"`
 	Description string    `json:"description,omitempty" form:"description"`
-	Price       int       `json:"price,omitempty" form:"price"`
+	Price       int       `json:"price,string,omitempty" form:"price"`
 	Status      string    `json:"status,omitempty" form:"status"`
 	Stock       int       `json:"stock,omitempty" form:"stock"`
 	Category    string    `json:"category,omitempty" form:"category"`
