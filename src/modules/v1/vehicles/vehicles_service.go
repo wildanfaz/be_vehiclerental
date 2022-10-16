@@ -39,13 +39,13 @@ func (svc *vehicles_service) UpdateVehicle(vars string, body *models.Vehicle) *l
 		return libs.Response(nil, 400, "failed update data", check)
 	}
 
-	_, err := svc.repo.ChangeVehicle(vars, body)
+	data, err := svc.repo.ChangeVehicle(vars, body)
 
 	if err != nil {
 		return libs.Response(nil, 400, "failed update data", err)
 	}
 
-	return libs.Response(nil, 200, "success update data", nil)
+	return libs.Response(data, 200, "success update data", nil)
 }
 
 func (svc *vehicles_service) DeleteVehicle(vars string, body *models.Vehicle) *libs.Resp {
