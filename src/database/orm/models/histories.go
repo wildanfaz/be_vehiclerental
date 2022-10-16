@@ -12,7 +12,7 @@ type History struct {
 	User          User      `json:"user"`
 	StartRental   string    `json:"start_rental"`
 	EndRental     string    `json:"end_rental"`
-	Prepayment    int       `json:"prepayment"`
+	Prepayment    int       `json:"prepayment,string"`
 	PaymentStatus string    `json:"payment_status"`
 	ReturnStatus  string    `json:"return_status"`
 	CreatedAt     time.Time `gorm:"default:current_timestamp" json:"created_at"`
