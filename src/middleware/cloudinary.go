@@ -29,7 +29,7 @@ func CloudinaryAddImg(next http.HandlerFunc) http.HandlerFunc {
 			return
 		}
 
-		cntx, cancel := context.WithTimeout(context.Background(), 5 * time.Second)
+		cntx, cancel := context.WithTimeout(context.Background(), 8 * time.Second)
 		defer cancel()
 
 		//**file validation
