@@ -3,7 +3,6 @@ package vehicles
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"strconv"
 
@@ -61,21 +60,21 @@ func (ctrl *vehicles_ctrl) AddVehicle(w http.ResponseWriter, r *http.Request) {
 func (ctrl *vehicles_ctrl) UpdateVehicle(w http.ResponseWriter, r *http.Request) {
 	var datas models.Vehicle
 
-	bd, errs := ioutil.ReadAll(r.Body)
-	if errs != nil {
-		libs.Response(nil, 400, "failed to readAll", errs).Send(w)
-	}
-
-	err := json.Unmarshal(bd, &datas)
-	if err != nil {
-		libs.Response(nil, 400, "failed to Unmarshal", err).Send(w)
-	}
-
-	// err := json.NewDecoder(r.Body).Decode(&datas)
-	// if err != nil {
-	// 	libs.Response(nil, 400, "failed to decode", err).Send(w)
-	// 	return
+	// bd, errs := ioutil.ReadAll(r.Body)
+	// if errs != nil {
+	// 	libs.Response(nil, 400, "failed to readAll", errs).Send(w)
 	// }
+
+	// err := json.Unmarshal(bd, &datas)
+	// if err != nil {
+	// 	libs.Response(nil, 400, "failed to Unmarshal", err).Send(w)
+	// }
+
+	err := json.NewDecoder(r.Body).Decode(&datas)
+	if err != nil {
+		libs.Response(nil, 400, "failed to decode", err).Send(w)
+		return
+	}
 	
 	vars := mux.Vars(r)
 	data := ctrl.svc.UpdateVehicle(vars["vehicle_id"], &datas)
