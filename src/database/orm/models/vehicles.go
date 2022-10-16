@@ -7,12 +7,12 @@ import (
 
 type Vehicle struct {
 	VehicleId   uint      `gorm:"primaryKey" json:"vehicle_id" form:"vehicle_id"`
-	VehicleName string    `json:"vehiclename,omitempty" form:"vehiclename"`
+	VehicleName string    `json:"vehicle_name,omitempty" form:"vehiclename"`
 	Location    string    `json:"location,omitempty" form:"location"`
 	Description string    `json:"description,omitempty" form:"description"`
-	Price       int       `json:"price,string,omitempty" form:"price"`
+	Price       json.Number       `json:"price,omitempty" form:"price"`
 	Status      string    `json:"status,omitempty" form:"status"`
-	Stock       int       `json:"stock,string,omitempty" form:"stock"`
+	Stock       json.Number       `json:"stock,omitempty" form:"stock"`
 	Category    string    `json:"category,omitempty" form:"category"`
 	Image       string    `json:"image,omitempty" form:"image"`
 	CreatedAt   time.Time `gorm:"default:current_timestamp" json:"created_at" form:"created_at"`
