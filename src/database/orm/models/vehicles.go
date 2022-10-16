@@ -15,7 +15,7 @@ type Vehicle struct {
 	CreatedAt   time.Time `gorm:"default:current_timestamp" json:"created_at" form:"created_at"`
 	UpdatedAt   time.Time `gorm:"default:current_timestamp" json:"updated_at" form:"updated_at"`
 	Rating      float32   `json:"rating,omitempty" form:"rating"`
-	TotalRented int       `json:"-" form:"total_rented"`
+	TotalRented int       `json:"total_rented,string,omitempty" form:"total_rented"`
 }
 
 type Vehicles []Vehicle
