@@ -1,6 +1,9 @@
 package models
 
-import "time"
+import (
+	"encoding/json"
+	"time"
+)
 
 type Vehicle struct {
 	VehicleId   uint      `gorm:"primaryKey" json:"vehicle_id" form:"vehicle_id"`
@@ -14,7 +17,7 @@ type Vehicle struct {
 	Image       string    `json:"image,omitempty" form:"image"`
 	CreatedAt   time.Time `gorm:"default:current_timestamp" json:"created_at" form:"created_at"`
 	UpdatedAt   time.Time `gorm:"default:current_timestamp" json:"updated_at" form:"updated_at"`
-	Rating      float64   `json:"rating,string,omitempty" form:"rating"`
+	Rating      json.Number   `json:"rating,string,omitempty" form:"rating"`
 	TotalRented int       `json:"total_rented,string,omitempty" form:"total_rented"`
 }
 
