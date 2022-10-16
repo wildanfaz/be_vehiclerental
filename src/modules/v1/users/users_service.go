@@ -25,6 +25,10 @@ func (svc *users_service) GetAllUsers() *libs.Resp {
 }
 
 func (svc *users_service) AddUser(body *models.User) *libs.Resp {
+	if body.Name == "" || body.Email == "" || body.Password == "" {
+		return libs.Response(nil, 400, "data can't empty", nil)
+	}
+
 	hashpassword, errhash := libs.HashingPassword(body.Password)
 
 	if errhash != nil {
