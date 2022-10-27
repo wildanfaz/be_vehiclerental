@@ -45,6 +45,14 @@ func (m *RepoMock)FindUserByEmail(email string) (*models.User, error){
 	return args.Get(0).(*models.User), nil
 }
 
+func (m *RepoMock)FindUserByEmail2(email string) (*models.User, error){
+	if email == "" {
+		email = "user"
+	}
+	args := m.mock.Called(email)
+	return args.Get(0).(*models.User), nil
+}
+
 func (m *RepoMock) CheckDB(body *models.User) error {
 	return nil
 }

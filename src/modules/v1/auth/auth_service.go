@@ -1,6 +1,8 @@
 package auth
 
 import (
+	"fmt"
+
 	"github.com/wildanfaz/vehicle_rental/src/database/orm/models"
 	"github.com/wildanfaz/vehicle_rental/src/interfaces"
 	"github.com/wildanfaz/vehicle_rental/src/libs"
@@ -26,11 +28,13 @@ func (auth *auth_service) Login(body models.User) *libs.Resp {
 		return libs.Response(nil, 401, "incorrect email", errs)
 	}
 
-	user, err := auth.repo.FindUserByEmail(body.Email)
+	user, err := auth.repo.FindUserByEmail2(body.Email)
 
 	if err != nil {
 		return libs.Response(nil, 401, "incorrect email", err)
 	}
+
+	fmt.Print(user.Password)
 
 	if err := libs.CheckPassword(user.Password, body.Password); err != nil {
 		return libs.Response(nil, 401, "incorrect password", err)

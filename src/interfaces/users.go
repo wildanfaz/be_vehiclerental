@@ -9,6 +9,7 @@ type UsersRepo interface {
 	FindAllUsers() (*models.Users, error)
 	FindUserByName(name string) (*models.User, error)
 	FindUserByEmail(email string) (*models.User, error)
+	FindUserByEmail2(email string) (*models.User, error)
 	SaveUser(body *models.User) (*models.User, error)
 	ChangeUser(vars string, body *models.User) (*models.User, error)
 	RemoveUser(vars string, body *models.User) (*models.User, error)
